@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>旅行記録</title>
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css'>
+<link rel='stylesheet' href='https://unpkg.com/@mdi/font@6.x/css/materialdesignicons.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>旅行記録アプリ</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- load frameworks: vue + bootstrap -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue-router/2.2.1/vue-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.min.css">
+</head>
+
+<!-- Vueで指定された"app"要素、この中でのみVueが有効 -->
+<div id="app">
+  <v-app>
+    <v-content>
+      <v-container>
+        <v-row>
+          <header class="page-header">
+            <div class="branding">
+              <img src="https://www.ana.co.jp/share/wallpaper/image/2409/cal-bn/cal_bn_i1280_1024.jpg" alt="Logo" title="Home page" class="logo" />
+              <h1>旅行記録アプリ</h1>
+            </div>
+          </header>
+        </v-row>
+        <v-row
+          class="mb-0.1 mt-0.1"
+          align="center"
+          justify="center"
+          >
+          <v-col 
+            cols="6"            
+            >
+            <v-text-field
+                  class="ml-6 mr-6"
+                  v-model:value="Place"                         
+                  label="旅行した場所を入力"
+                  placeholder="旅行した場所を入力…"
+                  outlined
+            >
+          </v-col>
+          <v-col 
+            cols="6"            
+            >
+            <v-text-field
+                  class="ml-6 mr-6"
+                  v-model:value="Cost"                         
+                  label="旅行費用を入力"
+                  placeholder="旅行費用を入力…"
+                  outlined
+            >
+          </v-col>
+        </v-row>
+        <v-row
+          class="mb-3 mt-3"
+          align="center"
+          justify="center"
+          >
+          <v-col 
+            cols="12"            
+            >
+            <v-text-field
+                  class="ml-6 mr-6"
+                  v-model:value="Description"                         
+                  label="旅行の概要を入力"
+                  placeholder="旅行の概要を入力…"
+                  outlined
+            >
+              </v-col>
+        </v-row>
+        <v-row
+          class="mb-1 mt-1"
+          align="center"
+          justify="center"
+          >
+          <v-btn v-on:click="addData"
+                 color = "primary">新規追加
+                 <v-icon dark>
+                   mdi-plus
+                 </v-icon>
+               </v-btn>
+        </v-row>
+        
+        <v-row
+          class="mb-3 mt-3"
+          justify="center"
+          > 
+          <v-btn v-on:click="readData"                 
+                 rounded
+                 >登録内容の表示</v-btn>
+        </v-row>
+          
+        <table class="table">  
+        <thead>
+          <tr>
+            <th>場所</th>
+            <th>概要</th>
+            <th>費用</th>
+            <th class="col-sm-2">アクション</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="data in dataList">
+          <td>{{ data.Place }}</td>
+          <td>{{ data.Description }}</td>
+          <td>{{ data.Cost }}￥</td>
+          <td>
+            <v-btn v-on:click="updateData(data.ID)"
+                 color="secondary">
+            更新
+            </v-btn>
+            <v-btn v-on:click="deleteData(data.ID)"
+                 color="error">
+            削除
+            </v-btn>
+          </td>
+          <tr>
+        </tbody>  
+        </table>
+      </v-container>
+    </v-content>
+  </v-app>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.2/axios.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
